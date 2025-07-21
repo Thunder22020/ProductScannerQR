@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: "ScannerQR"
+  datasource:
+    username: postgres
+    password: 1234
+    url: jdbc:postgresql://localhost:5432/postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+api:
+  check:
+    token: "34471.UMdSe5LDz2wJ6oj23"
+
+scanner_qr:
+  service-type:
+    api: "rest_client"
+    db: "jdbc"

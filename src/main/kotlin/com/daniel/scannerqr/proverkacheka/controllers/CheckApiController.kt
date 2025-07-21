@@ -1,24 +1,24 @@
-package com.daniel.scannerqr.controllers
+package com.daniel.scannerqr.proverkacheka.controllers
 
+import com.daniel.scannerqr.proverkacheka.models.CheckResponse
+import com.daniel.scannerqr.services.api.CheckApiService
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
-import com.daniel.scannerqr.services.ApiService
-import com.daniel.scannerqr.models.CheckResponse
-import org.springframework.web.multipart.MultipartFile
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.multipart.MultipartFile
 
 @RestController
 @RequestMapping("/api/qr")
-class ApiController(
-    private val service: ApiService,
+class CheckApiController(
+    private val service: CheckApiService
 ) {
 
     @PostMapping("/upload", consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
     fun uploadImage(@RequestParam image: MultipartFile): ResponseEntity<CheckResponse?> {
-        val result = service.makeRequest(image)
+        val result = service.getCheckResponse(image)
         return ResponseEntity.ok(result)
     }
 

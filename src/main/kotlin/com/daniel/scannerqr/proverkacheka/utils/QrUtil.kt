@@ -1,15 +1,18 @@
-package com.daniel.scannerqr.utils
+package com.daniel.scannerqr.proverkacheka.utils
 
-import com.google.zxing.*
-import java.nio.file.Files
-import java.awt.Graphics2D
-import javax.imageio.ImageIO
-import java.awt.image.BufferedImage
+import com.google.zxing.BinaryBitmap
+import com.google.zxing.DecodeHintType
+import com.google.zxing.MultiFormatReader
+import com.google.zxing.NotFoundException
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource
 import com.google.zxing.common.HybridBinarizer
-import org.springframework.web.multipart.MultipartFile
 import org.bytedeco.opencv.global.opencv_imgcodecs.imread
 import org.bytedeco.opencv.opencv_objdetect.QRCodeDetector
-import com.google.zxing.client.j2se.BufferedImageLuminanceSource
+import org.springframework.web.multipart.MultipartFile
+import java.awt.Graphics2D
+import java.awt.image.BufferedImage
+import java.nio.file.Files
+import javax.imageio.ImageIO
 
 object QrUtils {
 
