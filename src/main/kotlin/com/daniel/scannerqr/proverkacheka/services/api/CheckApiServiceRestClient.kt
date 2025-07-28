@@ -1,6 +1,7 @@
 package com.daniel.scannerqr.proverkacheka.services.api
 
 import com.daniel.scannerqr.proverkacheka.models.CheckResponse
+import com.daniel.scannerqr.proverkacheka.utils.CheckApiDtoConverter
 import com.daniel.scannerqr.proverkacheka.utils.QrUtils
 import com.daniel.scannerqr.services.api.CheckApiService
 import com.daniel.scannerqr.services.db.CheckApiDatabaseService
@@ -21,6 +22,11 @@ class CheckApiServiceRestClient(
     @Value("\${api.check.token}") private val token: String,
 ) : CheckApiService {
     override fun getCheckResponse(qrRaw: String): CheckResponse? {
+        val existing = dbService.findCheckByQrRaw(qrRaw)
+        if (existing != null) {
+            return CheckApiDtoConverter.toCheckResponse(existing)
+        }
+
         val formData: MultiValueMap<String, String> = LinkedMultiValueMap()
         formData.add("token", token)
         formData.add("qrraw", qrRaw)
@@ -33,7 +39,6 @@ class CheckApiServiceRestClient(
             .body(CheckResponse::class.java)
 
         dbService.saveCheck(result)
-
         return result
     }
 

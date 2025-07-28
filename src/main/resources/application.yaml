@@ -8,7 +8,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
 
 api:
   check:
@@ -17,4 +17,4 @@ api:
 scanner_qr:
   service-type:
     api: "rest_client"
-    db: "jdbc"
+    db: "jpa"

@@ -17,12 +17,12 @@ data class ItemEntity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
 
-    @ManyToOne(cascade = [(CascadeType.PERSIST)])
+    @ManyToOne
     @JoinColumn(
         name = "check_id",
         referencedColumnName = "id"
     )
-    val check: CheckDataEntity,
+    var check: CheckDataEntity,
 
     val price: Double,
     val name: String,

@@ -1,5 +1,6 @@
 package com.daniel.scannerqr.proverkacheka.models.entities
 
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -16,12 +17,15 @@ data class CheckDataEntity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
 
-    @OneToMany(mappedBy = "check")
-    val items: List<ItemEntity>,
+    @OneToMany(mappedBy = "check", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var items: MutableList<ItemEntity> = mutableListOf(),
 
     @Column(name = "user_name")
     val user: String?,
     val userInn: String?,
     val operator: String?,
-    val totalSum: Double?
+    val totalSum: Double?,
+
+    @Column(name = "qr_raw")
+    val qrRaw: String?,
 )

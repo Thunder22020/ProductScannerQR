@@ -5,5 +5,5 @@ data class CheckDataDTO(
     val user: String?,
     val userInn: String?,
     val operator: String?,
-    val totalSum: Double?
+    val totalSum: Double?,
 )
